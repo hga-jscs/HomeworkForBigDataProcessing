@@ -1,0 +1,13 @@
+{
+  "run_id": "服装日级", "adapter": "hm", "input_format": "parquet",
+  "transactions": "{project}/数据/服装交易/transactions/train/*.parquet",
+  "articles": "{project}/数据/服装交易/articles/train/*.parquet",
+  "output": "{project}/数据/分布式仓库",
+  "granularity": "day", "item_level": "product_type",
+  "periods": [["2019-01-01", "2019-09-01"], ["2020-01-01", "2020-09-01"]],
+  "partitions": 24, "write_buckets": 2, "min_baskets": 2,
+  "minimum_support": 0.05, "maximum_length": 3,
+  "max_local_projection_items": 200000,
+  "max_broadcast_patterns": 50000,
+  "max_baskets_per_customer": 10000, "max_items_per_basket": 5000
+}

@@ -1,0 +1,17 @@
+{
+  "dataset": "UCI Online Retail II, all two sheets",
+  "periods": {"2010": ["2010-01-01", "2010-12-01"], "2011": ["2011-01-01", "2011-12-01"]},
+  "cohort": "customers with at least two distinct valid timestamps in both periods",
+  "split": "sha256('sequence-v1:'+customer) first 8 hex digits modulo 10 < 5 for discovery; remaining for evaluation",
+  "discovery_year": 2010,
+  "minimum_support": 0.02,
+  "maximum_length": 3,
+  "pattern_language": "sequences of singleton products; each step must have a strictly later transaction timestamp; skipped baskets permitted",
+  "primary_family": "all discovery-frequent sequences of length 2 and 3; no selection using evaluation results",
+  "primary_test": "two-sided exact McNemar with Benjamini-Yekutieli FDR correction, q <= 0.05",
+  "confidence_intervals": "paired customer bootstrap, 2000 replicates, marginal percentile 95%, not simultaneous",
+  "sensitivities": ["maximum inter-event gap 30/90 days", "truncate both years to minimum observed basket count for each paired customer", "support 1%,2%,3%,5%"],
+  "order_permutation": "top 10 distinct-product pairs by discovery support, 499 within-customer basket-order permutations on evaluation year 2010; two-sided centered-null test; Bonferroni over ten",
+  "seed": 20261031,
+  "scope": "exploratory course experiment; one retailer; no causal claim; local single-machine pipeline"
+}

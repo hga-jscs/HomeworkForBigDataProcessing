@@ -1,0 +1,12 @@
+{
+  "run_id": "零售分钟", "adapter": "online_retail",
+  "transactions": "{project}/数据/原始交易.csv",
+  "output": "{project}/数据/分布式仓库",
+  "granularity": "timestamp", "item_level": "product",
+  "periods": [["2010-01-01", "2010-12-01"], ["2011-01-01", "2011-12-01"]],
+  "partitions": 8, "write_buckets": 1, "min_baskets": 2,
+  "minimum_support": 0.05, "maximum_length": 3,
+  "max_local_projection_items": 200000,
+  "max_broadcast_patterns": 50000,
+  "max_baskets_per_customer": 10000, "max_items_per_basket": 5000
+}
