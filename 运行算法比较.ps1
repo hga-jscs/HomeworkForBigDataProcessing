@@ -44,8 +44,10 @@ if ($LASTEXITCODE -ne 0) { throw '正式实验不完整或一致性核验失败�
 if ($LASTEXITCODE -ne 0) { throw '耗时波动诊断失败。' }
 & $PythonPath (Join-Path $projectPath '算法比较\核对既有模式.py')
 if ($LASTEXITCODE -ne 0) { throw '与既有完整模式的核对失败。' }
+& $PythonPath (Join-Path $projectPath '代码\导出结果.py')
+if ($LASTEXITCODE -ne 0) { throw 'CSV 结果导出失败。' }
 & $PythonPath (Join-Path $projectPath '代码\生成对比报告.py')
 if ($LASTEXITCODE -ne 0) { throw '报告生成失败。' }
 & $PythonPath (Join-Path $projectPath '代码\检查对比报告.py')
 if ($LASTEXITCODE -ne 0) { throw '报告结构检查失败。' }
-Write-Host '完成：上一层目录为新的八页对比报告。PDF 交付前仍应检查每页渲染。'
+Write-Host '完成：结果\成果 中有三张 CSV 结果表，上一层目录为八页对比报告。'

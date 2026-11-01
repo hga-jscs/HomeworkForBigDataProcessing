@@ -45,4 +45,4 @@ if (-not $OnlyReport) {
     if ($LASTEXITCODE -ne 0) { throw '结果汇总失败' }
 }
 & (Join-Path $projectPath '运行算法比较.ps1') -PythonPath $PythonPath -OnlyReport:$OnlyReport
-Write-Host '完成。报告位于上一层目录，实验产物位于本目录。'
+Write-Host '完成。报告位于上一层目录，CSV 结果表位于 结果\成果。'
